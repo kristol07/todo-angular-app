@@ -1,0 +1,19 @@
+<div>
+    <button [routerLink]="['/items']">Back to list</button>
+</div>
+<div>
+    <input type="checkbox">
+    <input type="text" value="{{item.description}}">
+    <input type="checkbox">
+    <br>
+    <label>Subitems: <input type="button" value="Create subitem"></label>
+    <p *ngFor='let child of item.children'>
+        {{child.id}}, {{child.description}}
+    </p>
+
+    <div>
+        <button>Delete</button>
+        <button>Save</button>
+    </div>
+
+</div>

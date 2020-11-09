@@ -1,0 +1,21 @@
+<div class="title">
+    <h1>ToDo List</h1>
+</div>
+
+<div class="search-box">
+    <input type="text" value="search"><button>Reload</button>
+</div>
+
+<div class="list-box">
+    <div *ngFor='let item of items'>
+        <div class="item-box">
+            <input type="checkbox">
+            <button class="item-button" [routerLink]="['/items', item.id]">{{item.description}}</button>
+            <input type="checkbox">
+        </div>
+    </div>
+</div>
+
+<div>
+    <button>Create Item</button>
+</div>
