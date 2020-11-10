@@ -1,0 +1,23 @@
+<div id="search-box">
+    <input #searchBox type="search" id="item-search" placeholder="Search" (input)="filterItems(searchBox.value)">
+    <button (click)="reload(); searchBox.value=''">Reload</button>
+
+    <div>
+        <button (click)="sortByDescription()">Sort by description</button>
+        <button (click)="sortByCreatedTime()">Sort by creation time</button>
+        <button (click)="switchDone()">Show / hide done</button>
+    </div>
+
+    <div>
+        <ul class="search-result">
+            <li *ngFor="let item of items$ | async">
+                <input type="checkbox" id="done" [(ngModel)]="item.done" (change)="saveItem(item)">
+                <label for="done" [routerLink]="['/items', item.id]">
+                    {{item.description}}
+                </label>
+                <input type="checkbox" id="favorite" [(ngModel)]="item.favorite" (change)="saveItem(item)">
+                
+            </li>
+        </ul>
+    </div>
+</div>

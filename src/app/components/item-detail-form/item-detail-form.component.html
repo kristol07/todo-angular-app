@@ -1,19 +1,35 @@
 <div>
-    <button [routerLink]="['/items']">Back to list</button>
+    <!-- <button ([routerLink]="['/items']" )>Back to list</button> -->
+    <button (click)="discardChanges()">Back to list</button>
+    <!-- <nav>
+        <a routerLink="/discard-changes">Back to list</a>
+    </nav>
+    
+    <router-outlet></router-outlet> -->
+    <!-- <app-discard-changes (isDiscard)="discardChanges($event)"></app-discard-changes> -->
 </div>
 <div>
-    <input type="checkbox">
-    <input type="text" value="{{item.description}}">
-    <input type="checkbox">
+    <input type="checkbox" [(ngModel)]="item.done" (change)="checkAll()">
+    <!-- <input type="text" value="{{item.description}}"> -->
+    <input [(ngModel)]="item.description" placeholder="item description" required>
+    <input type="checkbox" [(ngModel)]="item.favorite" (change)="checkFavorite()">
     <br>
-    <label>Subitems: <input type="button" value="Create subitem"></label>
-    <p *ngFor='let child of item.children'>
-        {{child.id}}, {{child.description}}
-    </p>
+    <label>
+        Subitems: 
+        <input type="button" value="Create subitem" (click)="createSubitem()">
+    </label>
+    <div *ngIf="item.children">
+        <p *ngFor='let child of item.children'>
+            <input type="checkbox" [(ngModel)]="child.done" (change)="checkChildStatus()">
+            <input [(ngModel)]="child.description">
+            <button (click)="deleteSubitem(child.id)">Delete</button>
+        </p>
+    </div>
 
     <div>
-        <button>Delete</button>
-        <button>Save</button>
+        <button (click)="deleteItem(item)">Delete</button>
+        <span>{{item.createdTime | date}}</span>
+        <button (click)="saveItem(item)">Save</button>
     </div>
 
 </div>

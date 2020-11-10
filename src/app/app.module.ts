@@ -7,9 +7,12 @@ import { ItemDetailFormComponent } from './components/item-detail-form/item-deta
 import { ItemComponent } from './containers/item/item/item.component';
 import { ItemsComponent } from './containers/items/items/items.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ItemService } from './services/item.service';
+import { ItemSearchComponent } from './components/item-search/item-search.component';
+import { DiscardChangesComponent } from './components/discard-changes/discard-changes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,17 +20,22 @@ import { ItemService } from './services/item.service';
     ItemListComponent,
     ItemDetailFormComponent,
     ItemComponent,
-    ItemsComponent
+    ItemsComponent,
+    ItemSearchComponent,
+    DiscardChangesComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path:'', pathMatch: 'full', redirectTo: 'items'},
       {path:'items', component: ItemsComponent},
-      {path:'items/:id', component: ItemComponent}
-    ])
+      {path:'items/:id', component: ItemComponent},
+      {path: 'discard-changes', component: DiscardChangesComponent}
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]
