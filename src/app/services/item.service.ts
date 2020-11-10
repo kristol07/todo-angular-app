@@ -58,9 +58,10 @@ export class ItemService {
     if (!term.trim()) {
       return this.getItems();
     }
+
     return this.httpClient.get<Item[]>(`${this._apiPath}/?description=${term}`)
       .pipe(
-        tap(_=>console.log("search Items")),
+        tap(_=>console.log(`search Items ${term}`)),
         catchError(this.handleError<Item[]>(`searchItems ${term}`, []))
       );
   }

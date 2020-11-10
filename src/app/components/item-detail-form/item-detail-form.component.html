@@ -21,7 +21,7 @@
     <div *ngIf="item.children">
         <p *ngFor='let child of item.children'>
             <input type="checkbox" [(ngModel)]="child.done" (change)="checkChildStatus()">
-            <input [(ngModel)]="child.description">
+            <input [(ngModel)]="child.description" placeholder="subitem description">
             <button (click)="deleteSubitem(child.id)">Delete</button>
         </p>
     </div>

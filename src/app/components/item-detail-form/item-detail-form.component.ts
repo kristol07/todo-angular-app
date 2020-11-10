@@ -13,7 +13,6 @@ export class ItemDetailFormComponent implements OnInit {
   @Output() save = new EventEmitter<Item>();
   @Output() delete = new EventEmitter<Item>();
   @Input() item: Item;
-  @Input() choiceForDiscardChanges: boolean;
   editStatus: boolean = false;
 
   constructor(private router: Router,
@@ -73,7 +72,7 @@ export class ItemDetailFormComponent implements OnInit {
   generateNewItem(): Item {
     return {
       id: `${(new Date(Date.now())).getTime()}`,
-      description: "new item",
+      description: "",
       createdTime: new Date(Date.now()),
       done: false,
       favorite: false,

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounce, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { Item } from 'src/app/models/item';
@@ -11,26 +11,29 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class ItemSearchComponent implements OnInit {
 
-  items$: Observable<Item[]>;
+  items: Item[];
   private search = new Subject<string>();
   showDone: boolean = false;
-  
+
   constructor(private itemService: ItemService) { }
 
-  filterItems(term: string): void {
-    this.search.next(term);
-  }
 
   ngOnInit(): void {
-    this.items$ = this.search.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.itemService.searchItems(term)),
-    );
+    this.reload();
   }
 
-  reload(): void {    
-    this.items$ = this.itemService.getItems();
+  reload(): void {
+    this.itemService.getItems().subscribe(items => this.items = items);
+  }
+
+  filterItems(term: string): void {
+    if (!term.trim()) {
+      this.reload();
+    }
+    this.itemService.getItems().pipe(
+      map(items => this.items = items.filter(item => item.description.toLowerCase().includes(term.toLowerCase())))
+    ).subscribe(items => this.items = items);
+    // filter(item => item.description.includes(term));
   }
 
   saveItem(item: Item): void {
@@ -38,27 +41,18 @@ export class ItemSearchComponent implements OnInit {
   }
 
   sortByDescription(): void {
-    this.items$ = this.items$.pipe(
-      map(items => items.sort(
-        (a,b)=>a.description.localeCompare(b.description)
-        ))
-    );
+    this.items = this.items.sort((a, b) => a.description.localeCompare(b.description));
   }
 
   sortByCreatedTime(): void {
-    this.items$ = this.items$.pipe(
-      map(items => items.sort(
-        (a,b)=>a.createdTime.toString().localeCompare(b.createdTime.toString())
-        ))
-    );
+    this.items = this.items.sort((a, b) => a.createdTime.toString().localeCompare(b.createdTime.toString()));
   }
 
   switchDone(): void {
     this.showDone
-    ? this.reload()
-    : this.items$ = this.items$.pipe(
-      map(items=>items.filter(item=> item.done == false)));
-    
-      this.showDone = !this.showDone;
-  }  
+      ? this.reload()
+      : this.items = this.items.filter(item => item.done === false);
+
+    this.showDone = !this.showDone;
+  }
 }

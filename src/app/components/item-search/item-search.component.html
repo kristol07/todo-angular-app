@@ -10,7 +10,7 @@
 
     <div>
         <ul class="search-result">
-            <li *ngFor="let item of items$ | async">
+            <li *ngFor="let item of items">
                 <input type="checkbox" id="done" [(ngModel)]="item.done" (change)="saveItem(item)">
                 <label for="done" [routerLink]="['/items', item.id]">
                     {{item.description}}
