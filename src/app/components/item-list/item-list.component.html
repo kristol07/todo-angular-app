@@ -1,9 +1,11 @@
-<div class="title">
-    <h1>ToDo List</h1>
-</div>
-
-<app-item-search></app-item-search>
-
 <div>
-    <button (click)="createItem()">Create Item</button>
+    <div class="title">
+        <h1 id="appName">ToDo List</h1>
+    </div>
+    
+    <app-item-search></app-item-search>
+    
+    <div>
+        <button (click)="createItem()" id="createNewItem">Create Item</button>
+    </div>
 </div>

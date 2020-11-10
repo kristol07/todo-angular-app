@@ -1,22 +1,24 @@
-<div id="search-box">
-    <input #searchBox type="search" id="item-search" placeholder="Search" (input)="filterItems(searchBox.value)">
-    <button (click)="reload(); searchBox.value=''">Reload</button>
+<div class="search-list">
+    <div id="search-box">
+        <input #searchBox type="search" id="item-search-input-box" placeholder="Search" (input)="filterItems(searchBox.value)">
+        <button (click)="reload(); searchBox.value=''" id="reload-button">Reload</button>
+    </div>
 
-    <div>
-        <button (click)="sortByDescription()">Sort by description</button>
-        <button (click)="sortByCreatedTime()">Sort by creation time</button>
-        <button (click)="switchDone()">Show / hide done</button>
+    <div class="filter-buttons">
+        <button (click)="sortByDescription()" id="sort-description-button">Sort by description</button>
+        <button (click)="sortByCreatedTime()" id="sort-createTime-button">Sort by creation time</button>
+        <button (click)="switchDone()" id="switch-done-button">Show / hide done</button>
     </div>
 
     <div>
-        <ul class="search-result">
-            <li *ngFor="let item of items">
+        <ul class="search-result" style="list-style-type:none;">
+            <li *ngFor="let item of items" class="items">
                 <input type="checkbox" id="done" [(ngModel)]="item.done" (change)="saveItem(item)">
                 <label for="done" [routerLink]="['/items', item.id]">
                     {{item.description}}
                 </label>
                 <input type="checkbox" id="favorite" [(ngModel)]="item.favorite" (change)="saveItem(item)">
-                
+
             </li>
         </ul>
     </div>
