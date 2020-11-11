@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ItemService } from './services/item.service';
 import { ItemSearchComponent } from './components/item-search/item-search.component';
-import { DiscardChangesComponent } from './components/discard-changes/discard-changes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ItemComponent,
     ItemsComponent,
     ItemSearchComponent,
-    DiscardChangesComponent,
   ],
   imports: [
     FormsModule,
@@ -33,7 +31,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {path:'', pathMatch: 'full', redirectTo: 'items'},
       {path:'items', component: ItemsComponent},
       {path:'items/:id', component: ItemComponent},
-      {path: 'discard-changes', component: DiscardChangesComponent},
     ]),
     BrowserAnimationsModule
   ],

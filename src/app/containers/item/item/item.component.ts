@@ -31,7 +31,6 @@ export class ItemComponent implements OnInit {
     // ? this.itemService.updateItem(item).subscribe(()=> this.router.navigate([`/items`]))
     // : this.itemService.addItem(item).subscribe(()=>this.router.navigate([`/items`]));
     this.itemService.upsertItem(item).subscribe(()=> this.router.navigate([`/items/${item.id}`]));
-    alert("success");
   }
 
   delete(item: Item)

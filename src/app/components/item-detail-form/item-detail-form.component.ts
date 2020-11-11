@@ -63,9 +63,13 @@ export class ItemDetailFormComponent implements OnInit {
   }
 
   discardChanges(): void {
-    this.editStatus
-      ? this.router.navigate(["/discard-changes"])
-      : this.router.navigate(["/items"]);
+    // this.editStatus
+    //   ? this.router.navigate(["/discard-changes"])
+    //   : this.router.navigate(["/items"]);
+    if(!this.editStatus || confirm("Sure to discard changes?"))
+    {
+        this.router.navigate(["/items"]);
+    }
   }
 
 
@@ -81,7 +85,9 @@ export class ItemDetailFormComponent implements OnInit {
   }
 
   deleteItem(item: Item) {
-    this.delete.emit(item);
+    if(confirm("Sure to delete?"))
+    {
+      this.delete.emit(item);
+    }
   }
-
 }
