@@ -76,7 +76,7 @@ export class ItemDetailFormComponent implements OnInit {
       createdTime: new Date(Date.now()),
       done: false,
       favorite: false,
-      children: null
+      children: []
     } as Item;
   }
 

@@ -56,11 +56,12 @@ export class ItemSearchComponent implements OnInit {
     this.showDone = !this.showDone;
   }
 
-  private getUnfinishedSubitemNumber(item: Item): number {
+  getUnfinishedSubitemNumber(item: Item): number {
     return item.children.filter(child => child.done == false).length;
   }
 
   changeDoneForChildren(item: Item) {
-    item.children.forEach(child => child.done = true);
+    var childrenStatus = item.done ? true : false;
+    item.children.forEach(child => child.done = childrenStatus);
   }
 }

@@ -1,72 +1,116 @@
-.detail{
-    margin: auto;
-    width: 50%;
+.detail {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 5px;
 }
 
-#back-button{
+button{
+    font-size: 12px;
+    text-align: center;
 }
 
-.back{
-    margin: auto;
-    border: 1px solid pink;
+
+.back {
+
 }
 
-.item-detail{
-    border: 1px solid pink;
-}
-
-.subItem{
-    border: 1px solid pink;
-}
-
-#add-subitem-button{
-    float: right;
-}
-
-.item-children-box{
-    border: 1px solid pink;
-}
-
-.children{
-    display: block;
-    border: 1px solid pink;
-}
-
-#done{
-    float: left;
-}
-
-#description{
-    width: 60%;
-}
-
-#delete-button{
-    float: right;
-}
-
-#item-done{
-    float: left;
-}
-
-#item-decription{
+#back-button {
     
 }
 
-#item-favorite{
-    float: right;
+.item-detail {
+  display: grid;
+  grid-template-columns: 5% 1fr 5%;
+  column-gap: 5px;
 }
 
-.bottom-operation{
+.item-done,
+.item-favorite {
+  margin: auto;
 }
 
-#item-delete-button{
-    float: left;
+
+.subItem {
+  display: flex;
+  justify-content: space-between;
 }
 
-#create-time{
-    border: 1px solid pink;
+#subitems-label {
+  font-size: 15px;
+  text-align: left;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-#item-save-button{
-    float: right;
+#add-subitem-button {}
+
+
+
+
+#item-decription {}
+
+#item-favorite {
+    
+}
+
+.item-children-box {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    row-gap: 3px;
+    border: 1px solid rgb(120, 124, 113);
+    padding: 3px;
+    height: 200px;
+    /* margin-top: 5px;
+    margin-bottom: 5px; */
+  }
+
+.children-item {
+  display: grid;
+  grid-template-columns: 5% 1fr 18%;
+  column-gap: 5px;
+}
+
+#subitem-done {
+    margin-left: 2px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#subitem-description {
+    
+}
+
+#subitem-delete-button {
+
+}
+
+#item-done {
+
+}
+
+
+.bottom-operation {
+    display: grid;
+    grid-template-columns: 18% 1fr 18%;
+    column-gap: 5px;
+}
+
+#item-delete-button {
+
+}
+
+#create-time {
+  text-align: center;
+  font-size: 12px;
+  margin: auto;
+}
+
+#item-save-button {
+  float: right;
 }

@@ -1,6 +1,7 @@
 <div class="search-list">
     <div id="search-box">
-        <input #searchBox type="search" id="item-search-input-box" placeholder="Search" (input)="filterItems(searchBox.value)">
+        <input #searchBox type="search" id="item-search-input-box" placeholder="Search"
+            (input)="filterItems(searchBox.value)">
         <button (click)="reload(); searchBox.value=''" id="reload-button">Reload</button>
     </div>
 
@@ -10,17 +11,21 @@
         <button (click)="switchDone()" id="switch-done-button">Show / hide done</button>
     </div>
 
-    <div>
-        <table class="search-result">
-            <tr *ngFor="let item of items" class="items">
-                <input type="checkbox" id="done" [(ngModel)]="item.done" (change)="saveItem(item); changeDoneForChildren(item)">
-                <label [routerLink]="['/items', item.id]" id="description">
-                    {{item.description}}
-                </label>
-                <label id="note-status">{{getUnfinishedSubitemNumber(item)}}/{{item.children.length}}</label>
-                <input type="checkbox" id="favorite" [(ngModel)]="item.favorite" (change)="saveItem(item)">
-
-            </tr>
-        </table>
-    </div>
+    <table class="search-result">
+        <tr *ngFor="let item of items" class="items">
+            <input type="checkbox" id="item-done" [(ngModel)]="item.done"
+                (change)="changeDoneForChildren(item); saveItem(item);">
+            <!-- <input type="checkbox" id="done" [(ngModel)]="item.done" disabled="disabled"> -->
+            <label [routerLink]="['/items', item.id]" id="item-description">
+                {{item.description}}
+            </label>
+            <label id="item-status">{{getUnfinishedSubitemNumber(item)}}/{{item.children.length}}</label>
+            <label id="item-createdTime">{{item.createdTime|date}}</label>
+            <span class="like">
+                <input type="checkbox" id="favorite-button" [(ngModel)]="item.favorite" (change)="saveItem(item)">
+                <label for="favorite-button">❤</label>
+            </span>
+        </tr>
+    </table>
+    
 </div>
