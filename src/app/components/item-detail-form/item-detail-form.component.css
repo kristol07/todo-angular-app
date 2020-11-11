@@ -1,0 +1,72 @@
+.detail{
+    margin: auto;
+    width: 50%;
+}
+
+#back-button{
+}
+
+.back{
+    margin: auto;
+    border: 1px solid pink;
+}
+
+.item-detail{
+    border: 1px solid pink;
+}
+
+.subItem{
+    border: 1px solid pink;
+}
+
+#add-subitem-button{
+    float: right;
+}
+
+.item-children-box{
+    border: 1px solid pink;
+}
+
+.children{
+    display: block;
+    border: 1px solid pink;
+}
+
+#done{
+    float: left;
+}
+
+#description{
+    width: 60%;
+}
+
+#delete-button{
+    float: right;
+}
+
+#item-done{
+    float: left;
+}
+
+#item-decription{
+    
+}
+
+#item-favorite{
+    float: right;
+}
+
+.bottom-operation{
+}
+
+#item-delete-button{
+    float: left;
+}
+
+#create-time{
+    border: 1px solid pink;
+}
+
+#item-save-button{
+    float: right;
+}

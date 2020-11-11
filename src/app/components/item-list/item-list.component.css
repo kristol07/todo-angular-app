@@ -1,9 +1,8 @@
-/* .title
+.title
 {
     margin: auto;
     width: 50%;
-    border: 3px solid green;
-    padding: 2px;
+    /* border: 1px solid green; */
     text-align: center;
 }
 
@@ -20,4 +19,4 @@
     margin-right: auto;
     width: 50%;
     font-size: inherit;
-} */
+}

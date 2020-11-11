@@ -72,7 +72,7 @@ export class ItemDetailFormComponent implements OnInit {
   generateNewItem(): Item {
     return {
       id: `${(new Date(Date.now())).getTime()}`,
-      description: "",
+      description: "new item",
       createdTime: new Date(Date.now()),
       done: false,
       favorite: false,

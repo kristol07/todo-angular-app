@@ -1,35 +1,44 @@
-<div>
-    <!-- <button ([routerLink]="['/items']" )>Back to list</button> -->
-    <button (click)="discardChanges()">Back to list</button>
-    <!-- <nav>
-        <a routerLink="/discard-changes">Back to list</a>
-    </nav>
-    
-    <router-outlet></router-outlet> -->
-    <!-- <app-discard-changes (isDiscard)="discardChanges($event)"></app-discard-changes> -->
-</div>
-<div>
-    <input type="checkbox" [(ngModel)]="item.done" (change)="checkAll()">
-    <!-- <input type="text" value="{{item.description}}"> -->
-    <input [(ngModel)]="item.description" placeholder="item description" required>
-    <input type="checkbox" [(ngModel)]="item.favorite" (change)="checkFavorite()">
-    <br>
-    <label>
-        Subitems: 
-        <input type="button" value="Create subitem" (click)="createSubitem()">
-    </label>
-    <div *ngIf="item.children">
-        <p *ngFor='let child of item.children'>
-            <input type="checkbox" [(ngModel)]="child.done" (change)="checkChildStatus()">
-            <input [(ngModel)]="child.description" placeholder="subitem description" required>
-            <button (click)="deleteSubitem(child.id)">Delete</button>
-        </p>
+<div class="detail">
+    <div class="back">
+        <!-- <button ([routerLink]="['/items']" )>Back to list</button> -->
+        <button (click)="discardChanges()" id="back-button">Back to list</button>
+        <!-- <nav>
+            <a routerLink="/discard-changes">Back to list</a>
+        </nav>
+        
+        <router-outlet></router-outlet> -->
+        <!-- <app-discard-changes (isDiscard)="discardChanges($event)"></app-discard-changes> -->
     </div>
-
     <div>
-        <button (click)="deleteItem(item)">Delete</button>
-        <span>{{item.createdTime | date}}</span>
-        <button (click)="saveItem(item)">Save</button>
+        <div class="item-detail">
+            <input type="checkbox" [(ngModel)]="item.done" (change)="checkAll()" id="item-done">
+            <input [(ngModel)]="item.description" placeholder="item description" required #description="ngModel" id="item-description">
+            <input type="checkbox" [(ngModel)]="item.favorite" (change)="checkFavorite()" id="item-favorite">
+        </div>
+    
+        <div class="subItem">
+            <label for="add-subItem-button">
+                Subitems:
+            </label>
+                <input type="button" value="Create subitem" (click)="createSubitem()" id="add-subItem-button">
+            
+        </div>
+        
+        <div *ngIf="item.children">
+            <table class="item-children-box">
+                <tr *ngFor='let child of item.children' class="children">
+                    <input type="checkbox" [(ngModel)]="child.done" (change)="checkChildStatus()" id="done">
+                    <input [(ngModel)]="child.description" placeholder="subitem description" required id="description">
+                    <button (click)="deleteSubitem(child.id)" id="delete-button">Delete</button>
+                </tr>
+            </table>
+        </div>
+    
+        <div class="bottom-operation">
+            <button (click)="deleteItem(item)" id="item-delete-button">Delete</button>
+            <span id="create-time">{{item.createdTime | date}}</span>
+            <button (click)="saveItem(item)" id="item-save-button">Save</button>
+        </div>
+    
     </div>
-
 </div>

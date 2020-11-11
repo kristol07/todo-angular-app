@@ -9,7 +9,6 @@ import { catchError, defaultIfEmpty, tap } from 'rxjs/operators';
 })
 export class ItemService {
 
-
   private _apiPath: string = `https://localhost:5001/api/todolist`;
 
   constructor(private httpClient: HttpClient) { }
@@ -17,12 +16,14 @@ export class ItemService {
   getItem(id: string): Observable<Item> {
     return this.httpClient.get<Item>(`${this._apiPath}/${id}`)
       .pipe(
+        tap(_=>this.log(`getItem id=${id}`)),
         catchError(this.handleError<Item>(`getItem id=${id}`, null)));
   }
 
   getItems(): Observable<Item[]> {
     return this.httpClient.get<Item[]>(`${this._apiPath}`)
       .pipe(
+        tap(_=>this.log(`get items`)),
         catchError(this.handleError('getItems', [])),
       );
   }
@@ -30,6 +31,7 @@ export class ItemService {
   updateItem(item: Item): Observable<Item> {
     return this.httpClient.patch<Item>(`${this._apiPath}/${item.id}`, item)
       .pipe(
+        tap(_=>this.log(`update Item ${item.id}`)),
         catchError(this.handleError<Item>(`update Item ${item.id}`)),
       );
   }
@@ -37,6 +39,7 @@ export class ItemService {
   upsertItem(item: Item): Observable<Item> {
     return this.httpClient.put<Item>(`${this._apiPath}`, item)
       .pipe(
+        tap(_=>this.log(`upsert Item ${item.id}`)),
         catchError(this.handleError<Item>(`upsert Item ${item.id}`)),
       );
   }
@@ -44,6 +47,7 @@ export class ItemService {
   addItem(item: Item) {
     return this.httpClient.post<Item>(`${this._apiPath}`, item)
       .pipe(
+        tap(_=>this.log(`add Item ${item.id}`)),
         catchError(this.handleError<Item>(`add Item ${item.id}`)),
       );
   }
@@ -51,6 +55,7 @@ export class ItemService {
   deleteItem(id: string) {
     return this.httpClient.delete<Item>(`${this._apiPath}/${id}`)
       .pipe(
+        tap(_=>this.log(`delete Item id=${id}`)),
         catchError(this.handleError<Item>(`delete Item id=${id}`)));
   }
 
@@ -68,7 +73,7 @@ export class ItemService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      // console.error(error);
       console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };

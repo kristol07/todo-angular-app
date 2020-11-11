@@ -33,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {path:'', pathMatch: 'full', redirectTo: 'items'},
       {path:'items', component: ItemsComponent},
       {path:'items/:id', component: ItemComponent},
-      {path: 'discard-changes', component: DiscardChangesComponent}
+      {path: 'discard-changes', component: DiscardChangesComponent},
     ]),
     BrowserAnimationsModule
   ],

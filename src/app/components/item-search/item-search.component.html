@@ -11,15 +11,16 @@
     </div>
 
     <div>
-        <ul class="search-result" style="list-style-type:none;">
-            <li *ngFor="let item of items" class="items">
-                <input type="checkbox" id="done" [(ngModel)]="item.done" (change)="saveItem(item)">
-                <label for="done" [routerLink]="['/items', item.id]">
+        <table class="search-result">
+            <tr *ngFor="let item of items" class="items">
+                <input type="checkbox" id="done" [(ngModel)]="item.done" (change)="saveItem(item); changeDoneForChildren(item)">
+                <label [routerLink]="['/items', item.id]" id="description">
                     {{item.description}}
                 </label>
+                <label id="note-status">{{getUnfinishedSubitemNumber(item)}}/{{item.children.length}}</label>
                 <input type="checkbox" id="favorite" [(ngModel)]="item.favorite" (change)="saveItem(item)">
 
-            </li>
-        </ul>
+            </tr>
+        </table>
     </div>
 </div>
